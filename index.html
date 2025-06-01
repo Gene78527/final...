@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aromas del Caribe - Jabones y Velas Artesanales</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #558b2f; 
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #aed581;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer; /
+        }
+
+        .button:hover {
+            background-color: #8bc34a; 
+        }
+
+        
+        header {
+            background-color: #fff;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 150px;
+            margin-right: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #558b2f;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        .social-icons img {
+            height: 25px;
+        }
+
+       
+        .slider-container {
+            overflow: hidden;
+            margin-bottom: 0px;
+            height: 330px; 
+            width: 100%; 
+            max-width: 1255px;
+            position: relative;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.8s ease-in-out; 
+            height: 100%; 
+        }
+
+        .slider img {
+            min-width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+        }
+
+        .welcome {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .welcome p {
+            line-height: 1.6;
+        }
+
+        .featured-products {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Empuja el botón hacia abajo */
+        }
+
+        .product-card img {
+            width: 100%; 
+            height: 200px; 
+            object-fit: cover; 
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .product-card h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .product-card .price {
+            color: #558b2f;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .advertisement {
+            background-color: #e0f2f7; 
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .ad-banner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .ad-banner h3 {
+            color: #00838f;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .contact-info {
+            margin-top: 10px;
+        }
+
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.6); 
+            justify-content: center; 
+            align-items: center; 
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            padding: 30px;
+            border: 1px solid #888;
+            width: 90%; 
+            max-width: 500px; 
+            border-radius: 8px;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: scale(0.9); 
+            animation: fadeInScale 0.3s forwards; 
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-content img {
+            max-width: 80%; 
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            float: none; 
+        }
+
+        .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #333;
+        }
+
+        .modal-details h3 {
+            margin-top: 0;
+            color: #558B2F;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .modal-details p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        #modalProductPrice {
+            font-weight: bold;
+            color: #D32F2F;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        /* --- Aquì estan los estilos para el Formulario de Compra --- */
+        .purchase-form-container {
+            display: none;
+            background-color: white;
+            padding: 40px;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+        }
+
+        .purchase-form-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #558B2F;
+        }
+
+        .purchase-form-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .purchase-form-container input[type="text"],
+        .purchase-form-container input[type="email"],
+        .purchase-form-container input[type="tel"],
+        .purchase-form-container input[type="number"],
+        .purchase-form-container textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        .purchase-form-container textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .purchase-form-container .form-buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .purchase-form-container .form-buttons .button {
+            margin: 0 10px;
+            background-color: #8BC34A;
+        }
+
+        .purchase-form-container .form-buttons .button.cancel {
+            background-color: #999;
+        }
+
+        .purchase-form-container .form-buttons .button:hover {
+            opacity: 0.9;
+        }
+
+          @keyframes pulse {
+         0%, 100% { transform: scale(1); }
+         50% { transform: scale(1.5); }
+        }
+
+          .pulse {
+           width: 150px;
+          height: auto;
+          animation: pulse 2s infinite;
+          animation-iteration-count: infinite; 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="l/kk.png" alt="Logo Aromas del Caribe" class="character pulse">
+            <h1>Aromas del Caribe</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="quienes somos.html">Quienes Somos</a></li>
+                <li><a href="product.html">Productos</a></li>
+                <li><a href="ofertas.html">Ofertas</a></li>
+                <li><a href="subcripcion o preguntas.html">Suscripción/Preguntas</a></li>
+            </ul>
+        </nav>
+        <div class="social-icons">
+            <a href="#" target="_blank"><img src="l/vvvv5.png" alt="Facebook"></a>
+            <a href="#" target="_blank"><img src="l/3.png" alt="Instagram"></a>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="slider-container" id="sliderSection">
+            <div class="slider">
+                <img src="l/hh.jpg" alt="Jabón Artesanal 1">
+                <img src="l/vvv.jpg" alt="Vela Aromática 1">
+                <img src="l/lll.jpg" alt="Jabón Artesanal 2">
+            </div>
+        </section>
+
+        <section class="welcome" id="welcomeSection">
+            <h2>Bienvenidos a Aromas del Caribe</h2>
+            <p>Descubre la magia de los aromas naturales del Caribe en nuestros jabones y velas artesanales. Elaborados con ingredientes locales y esencias únicas para brindarte una experiencia sensorial inolvidable.</p>
+        </section>
+
+        <section class="featured-products" id="productos-destacados">
+            <h2>Productos Destacados</h2>
+            <div class="product-grid">
+                <div class="product-card"
+                    data-image="l/xx.jpg"
+                    data-name="Jabón de Lavanda"
+                    data-description="Este jabón artesanal de lavanda está hecho con aceites esenciales puros para relajar tu cuerpo y mente. Ideal para pieles sensibles y para uso diario."
+                    data-price="$8.00">
+                    <img src="l/xx.jpg" alt="Jabón de Lavanda">
+                    <h3>Jabón de Lavanda</h3>
+                    <p>Relajante y suave para la piel.</p>
+                    <p class="price">$8.00</p>
+                    <button class="button details-button">Ver detalles</button>
+                </div>
+                <div class="product-card"
+                    data-image="l/ve.png"
+                    data-name="Vela de Coco y Vainilla"
+                    data-description="Nuestra vela de coco y vainilla te transportará a una playa tropical con su aroma dulce y exótico. Hecha con cera de soja 100% natural y mecha de algodón."
+                    data-price="$12.00">
+                    <img src="l/ve.png" alt="Vela de Coco y Vainilla">
+                    <h3>Vela de Coco y Vainilla</h3>
+                    <p>Un aroma tropical y dulce para tu hogar.</p>
+                    <p class="price">$12.00</p>
+                    <button class="button details-button">Ver detalles</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="advertisement" id="advertisementSection">
+            <div class="ad-banner">
+                <h3>¡Nueva Colección de Verano!</h3>
+                <p>Descubre nuestros nuevos aromas inspirados en las frutas tropicales.</p>
+                <a href="colec.html" class="button">Ver Colección</a>
+            </div>
+        </section>
+
+        <section class="purchase-form-container" id="purchaseForm">
+            <h2>Formulario de Compra</h2>
+            <form>
+                <p>Estás comprando: <strong id="formProductName"></strong></p>
+                <p>Precio: <strong id="formProductPrice"></strong></p>
+                <br>
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" name="telefono">
+
+                <label for="direccion">Dirección de Envío:</label>
+                <input type="text" id="direccion" name="direccion" required>
+
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" id="cantidad" name="cantidad" value="1" min="1" required>
+
+                <label for="notas">Notas Adicionales:</label>
+                <textarea id="notas" name="notas" rows="3"></textarea>
+
+                <div class="form-buttons">
+                    <button type="submit" class="button">Finalizar Compra</button>
+                    <button type="button" class="button cancel" id="cancelPurchase">Cancelar</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Aromas del Caribe. Todos los derechos reservados.</p>
+        <div class="contact-info">
+            <p>Dirección: Calle Falsa #123, Santo Domingo</p>
+            <p>Teléfono: (809) 555-1212</p>
+            <p>Email: info@aromasdelcaribe.com</p>
+        </div>
+    </footer>
+
+    <div id="productDetailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div class="modal-details">
+                <img id="modalProductImage" src="" alt="Imagen del Producto">
+                <h3 id="modalProductName"></h3>
+                <p id="modalProductDescription"></p>
+                <p id="modalProductPrice"></p>
+                <button class="button" id="buyButtonInModal">Comprar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- JavaScript para el Slider Automático ---
+        const slider = document.querySelector('.slider');
+        const images = document.querySelectorAll('.slider img');
+        let currentIndex = 0;
+        const totalImages = images.length;
+
+        function slideImages() {
+            currentIndex++;
+            if (currentIndex === totalImages) {
+                currentIndex = 0;
+                slider.style.transition = 'none';
+                slider.style.transform = `translateX(0)`;
+                setTimeout(() => {
+                    slider.style.transition = 'transform 0.8s ease-in-out';
+                }, 50);
+            }
+            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        let sliderInterval = setInterval(slideImages, 5000);
+
+        // --- JavaScript para el Modal de Detalles del Producto y el Formulario de Compra ---
+        const productDetailsModal = document.getElementById('productDetailsModal');
+        const closeButton = productDetailsModal.querySelector('.close-button');
+        const modalProductImage = document.getElementById('modalProductImage');
+        const modalProductName = document.getElementById('modalProductName');
+        const modalProductDescription = document.getElementById('modalProductDescription');
+        const modalProductPrice = document.getElementById('modalProductPrice');
+        const detailsButtons = document.querySelectorAll('.details-button');
+        const buyButtonInModal = document.getElementById('buyButtonInModal');
+
+        // Elementos del formulario de compra y secciones principales
+        const purchaseForm = document.getElementById("purchaseForm");
+        const sliderSection = document.getElementById("sliderSection"); // Añadido para el slider
+        const welcomeSection = document.getElementById("welcomeSection");
+        const featuredProductsSection = document.getElementById("productos-destacados");
+        const advertisementSection = document.getElementById("advertisementSection"); // Añadido para el anuncio
+        const formProductName = document.getElementById("formProductName");
+        const formProductPrice = document.getElementById("formProductPrice");
+        const cancelPurchaseButton = document.getElementById("cancelPurchase");
+
+        let selectedProductName = '';
+        let selectedProductPrice = '';
+
+        detailsButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const productCard = this.closest('.product-card');
+                
+                selectedProductName = productCard.dataset.name;
+                selectedProductPrice = productCard.dataset.price;
+
+                modalProductImage.src = productCard.dataset.image;
+                modalProductName.textContent = selectedProductName;
+                modalProductDescription.textContent = productCard.dataset.description;
+                modalProductPrice.textContent = selectedProductPrice;
+                productDetailsModal.style.display = 'flex';
+            });
+        });
+
+        closeButton.addEventListener('click', () => {
+            productDetailsModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target == productDetailsModal) {
+                productDetailsModal.style.display = 'none';
+            }
+        });
+
+        buyButtonInModal.addEventListener('click', function() {
+            productDetailsModal.style.display = 'none';
+            
+            // Oculta todas las secciones principales, incluyendo el slider
+            sliderSection.style.display = 'none';
+            welcomeSection.style.display = 'none';
+            featuredProductsSection.style.display = 'none';
+            advertisementSection.style.display = 'none';
+
+            // Detiene el slider cuando se oculta
+            clearInterval(sliderInterval);
+
+            formProductName.textContent = selectedProductName;
+            formProductPrice.textContent = selectedProductPrice;
+
+            purchaseForm.style.display = 'block';
+            window.scrollTo(0, 0);
+        });
+
+        cancelPurchaseButton.addEventListener('click', function() {
+            purchaseForm.style.display = "none";
+            
+            // Muestra todas las secciones principales, incluyendo el slider
+            sliderSection.style.display = 'block';
+            welcomeSection.style.display = "block";
+            featuredProductsSection.style.display = "block";
+            advertisementSection.style.display = "block";
+
+            // Reinicia el slider cuando se vuelve a la vista de productos
+            currentIndex = 0; // Opcional: reinicia el slider a la primera imagen
+            slider.style.transform = `translateX(0)`; // Asegura que empiece desde el inicio
+            sliderInterval = setInterval(slideImages, 5000); // Reinicia el intervalo
+
+            window.scrollTo(0, 0);
+        });
+
+        purchaseForm.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const nombre = document.getElementById('nombre').value;
+            alert(`¡Gracias por tu compra, ${nombre}, de ${selectedProductName}! Nos pondremos en contacto contigo pronto. (Este es solo un ejemplo de formulario)`);
+            
+            purchaseForm.style.display = "none";
+            
+            sliderSection.style.display = 'block';
+            welcomeSection.style.display = "block";
+            featuredProductsSection.style.display = "block";
+            advertisementSection.style.display = "block";
+
+            currentIndex = 0;
+            slider.style.transform = `translateX(0)`;
+            sliderInterval = setInterval(slideImages, 5000);
+
+            window.scrollTo(0, 0);
+        });
+    </script>
+</body>
+</html>
